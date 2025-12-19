@@ -29,9 +29,12 @@ final class SettingsRepository: SettingsRepositoryLogic {
             blue: 0
         )
         static let darkTextColor = ColorModel(
-            red: Int(108),
-            green: 140,
-            blue: 213
+//            red: Int(108),
+//            green: 140,
+//            blue: 213
+            red: Int(140),
+            green: 180,
+            blue: 243
         )
         
         // Элементы интерфейса

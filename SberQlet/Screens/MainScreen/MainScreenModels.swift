@@ -6,3 +6,22 @@
 //
 
 import Foundation
+
+// Модели передачи данных Main screen
+struct MainScreenModels {
+    
+    // Модели для передачи данных при старте экрана
+    enum Start {
+        struct Response {
+            let palette: [(ColorModel, ColorModel)]
+        }
+        struct ViewModel {
+            let palette: (
+                backgroundColor: (ColorModel, ColorModel),
+                textColor: (ColorModel, ColorModel),
+                elementsColor: (ColorModel, ColorModel),
+                labelElementsColor: (ColorModel, ColorModel)
+            )
+        }
+    }
+}
