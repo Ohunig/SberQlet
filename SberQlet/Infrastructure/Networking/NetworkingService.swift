@@ -37,6 +37,6 @@ final class NetworkingService: NetworkingLogic {
             }
             // Все проверки прошли успешно
             completion(.success(data))
-        }
+        }.resume()
     }
 }

@@ -27,4 +27,7 @@ protocol CollectionsConvertationLogic: AnyObject, Sendable {
     
     // Конвертирует данные в список коллекций. Возвращает nil в случае неудачи
     func convertDataToCollections(_ data: Data) -> [WordsCollection]?
+    
+    // Конвертирует список коллекций в данные
+    func convertCollectionsToData(_ collections: [WordsCollection]) -> Data?
 }

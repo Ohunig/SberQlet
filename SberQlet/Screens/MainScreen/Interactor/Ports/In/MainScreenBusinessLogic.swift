@@ -13,4 +13,7 @@ protocol MainScreenBusinessLogic: AnyObject {
     
     // Загрузка начальных настроек экрана
     func loadStart()
+    
+    // Загрузка данных из сети и локальных данных
+    func fetchData()
 }

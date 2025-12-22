@@ -25,4 +25,8 @@ final class MainScreenPresenter: MainScreenPresentationLogic {
             )
         )
     }
+    
+    func presentFetchedData() {
+        view?.displayFetchedData()
+    }
 }

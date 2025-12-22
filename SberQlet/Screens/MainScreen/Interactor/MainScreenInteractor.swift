@@ -9,6 +9,10 @@ import Foundation
 
 final class MainScreenInteractor: MainScreenBusinessLogic {
     
+    private enum Constants {
+        static let collectionsUrlString = "https://gitverse.ru/api/repos/Ohunig/JsonCards/raw/branch/master/PopularCards.json"
+    }
+    
     private weak var router: MainRoutingLogic?
     
     private let presenter: MainScreenPresentationLogic
@@ -51,6 +55,16 @@ final class MainScreenInteractor: MainScreenBusinessLogic {
                 ]
             )
         )
+    }
+    
+    func fetchData() {
+        // TODO: Completion
+        localRepository.fetchDataFromLocalStorage()
+        networkRepository.fetchCollections(from: Constants.collectionsUrlString) { result in
+            DispatchQueue.main.async {
+                self.presenter.presentFetchedData()
+            }
+        }
     }
 }
 

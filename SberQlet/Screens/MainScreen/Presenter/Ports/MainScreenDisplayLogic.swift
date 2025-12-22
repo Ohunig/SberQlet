@@ -14,4 +14,7 @@ protocol MainScreenDisplayLogic: AnyObject {
 
     // Отобразить начальное состояние экрана
     func displayStart(_ viewModel: Model.Start.ViewModel)
+    
+    // Отображение подтянутых данных
+    func displayFetchedData()
 }

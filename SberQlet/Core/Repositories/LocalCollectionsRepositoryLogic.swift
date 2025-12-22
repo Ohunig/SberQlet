@@ -37,4 +37,7 @@ protocol LocalCollectionsRepositoryLogic: AnyObject {
     
     // Удаляет коллекцию под нужным индексом если индекс корректен
     func deleteCollection(withIndex index: Int)
+    
+    // Подтягивает данные из локального хранилища
+    func fetchDataFromLocalStorage()
 }

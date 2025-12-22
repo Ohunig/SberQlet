@@ -8,7 +8,7 @@
 import Foundation
 
 // Модель коллекции слов с переводами
-struct WordsCollection: Codable {
+struct WordsCollection: Codable, Equatable {
     let name: String
     let wordsWithTranslate: [String: String]
     

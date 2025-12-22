@@ -14,4 +14,7 @@ protocol MainScreenPresentationLogic: AnyObject {
     
     // Презентация начальных настроек экрана
     func presentStart(_ response: Model.Start.Response)
+    
+    // Презентация подтянутых данных
+    func presentFetchedData()
 }

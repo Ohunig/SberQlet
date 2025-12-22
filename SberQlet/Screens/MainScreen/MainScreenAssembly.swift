@@ -17,10 +17,12 @@ enum MainScreenAssembly {
         let presenter = MainScreenPresenter()
         // Создаём нужные репозитории в билдере главного экрана так как
         // пригодятся только в ветке этого экрана
-        let localRepository = LocalCollectionsRepository()
+        let cache = CollectionsCacheService(converter: CollectionsConverter())
+        let localRepository = LocalCollectionsRepository(cache: cache)
         let networkRepository = NetworkingCollectionsRepository(
             networkingService: NetworkingService(),
-            collectionsConverter: CollectionsConverter()
+            collectionsConverter: CollectionsConverter(),
+            cache: cache
         )
         
         let interactor = MainScreenInteractor(
@@ -37,7 +39,8 @@ enum MainScreenAssembly {
         let viewController = MainScreenViewController(
             interactor: interactor,
             localCollectionsStorage: interactor,
-            networkCollectionsStorage: interactor
+            networkCollectionsStorage: interactor,
+            componentsFactory: StandardComponentsFactory()
         )
         
         presenter.view = viewController

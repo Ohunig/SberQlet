@@ -13,6 +13,8 @@ final class NetworkingCollectionsRepository: NetworkingCollectionsRepositoryLogi
     
     private let collectionsConverter: CollectionsConvertationLogic
     
+    private let cache: CollectionsCacheLogic
+    
     private var storage: [WordsCollection] = []
     
     var isUpToDate: Bool {
@@ -27,10 +29,12 @@ final class NetworkingCollectionsRepository: NetworkingCollectionsRepositoryLogi
     
     init(
         networkingService: NetworkingLogic,
-        collectionsConverter: CollectionsConvertationLogic
+        collectionsConverter: CollectionsConvertationLogic,
+        cache: CollectionsCacheLogic
     ) {
         networking = networkingService
         self.collectionsConverter = collectionsConverter
+        self.cache = cache
     }
     
     // MARK: Use-cases
@@ -47,29 +51,40 @@ final class NetworkingCollectionsRepository: NetworkingCollectionsRepositoryLogi
         from url: String,
         completion: @escaping @Sendable (Result<Void, any Error>) -> Void
     ) {
-        guard let correctUrl = URL(string: url) else {
-            completion(.failure(URLError(.badURL)))
-            return
-        }
-        networking.fetchData(from: correctUrl) { [weak self] result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let data):
-                    guard let collections = self?.collectionsConverter.convertDataToCollections(data)
-                    else {
-                        completion(
-                            .failure(
-                                CollectionsConvertationError.convertationFailed
+        let collections = cache.loadCollections(from: .network)
+        if collections == nil || collections == [] {
+            guard let correctUrl = URL(string: url) else {
+                completion(.failure(URLError(.badURL)))
+                return
+            }
+            networking.fetchData(from: correctUrl) { [weak self] result in
+                DispatchQueue.main.async {
+                    switch result {
+                    case .success(let data):
+                        guard let collections = self?.collectionsConverter.convertDataToCollections(data)
+                        else {
+                            completion(
+                                .failure(
+                                    CollectionsConvertationError.convertationFailed
+                                )
                             )
+                            return
+                        }
+                        self?.storage = collections
+                        self?.cache.saveCollections(
+                            self?.storage ?? [],
+                            .network
                         )
-                        return
+                        completion(.success(()))
+                    case .failure(let error):
+                        completion(.failure(error))
                     }
-                    self?.storage = collections
-                    
-                case .failure(let error):
-                    completion(.failure(error))
                 }
             }
+        }
+        else {
+            self.storage = collections ?? []
+            completion(.success(()))
         }
     }
 }

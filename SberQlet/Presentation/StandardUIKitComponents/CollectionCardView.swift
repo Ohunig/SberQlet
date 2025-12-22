@@ -13,6 +13,7 @@ final class CollectionCardView: UIView {
         static let fatalError = "init(coder:) has not been implemented"
         
         // Константы главного view
+        // height задаём жёстко потому что хочу всегда одну высоту
         static let heigh: CGFloat = 150
         static let cornerRadius: CGFloat = 30
         

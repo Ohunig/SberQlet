@@ -19,6 +19,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         // Set root view controller
         let navigationController = UINavigationController()
+        // Настраиваем нав бар для всего приложения
+        let navBar = navigationController.navigationBar
+        navBar.isTranslucent = true
+        navBar.backgroundColor = .clear
+        
+//        let cache = CollectionsCacheService(converter: CollectionsConverter())
+//        cache.saveCollections([], .local)
+//        cache.saveCollections([], .network)
+        
         window?.rootViewController = navigationController
         
         let router = Router(controller: navigationController)

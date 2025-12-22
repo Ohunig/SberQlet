@@ -11,8 +11,14 @@ final class LocalCollectionsRepository: LocalCollectionsRepositoryLogic {
     
     private var storage: [WordsCollection] = []
     
+    private var cache: CollectionsCacheLogic
+    
     var count: Int {
         storage.count
+    }
+    
+    init(cache: CollectionsCacheLogic) {
+        self.cache = cache
     }
     
     func getCollection(withIndex index: Int) -> WordsCollection? {
@@ -29,6 +35,7 @@ final class LocalCollectionsRepository: LocalCollectionsRepositoryLogic {
             }
         }
         storage.append(collection)
+        cache.saveCollections(storage, .local)
     }
     
     func deleteCollection(withIndex index: Int) {
@@ -36,5 +43,10 @@ final class LocalCollectionsRepository: LocalCollectionsRepositoryLogic {
             return
         }
         storage.remove(at: index)
+        cache.saveCollections(storage, .local)
+    }
+    
+    func fetchDataFromLocalStorage() {
+        storage = cache.loadCollections(from: .local) ?? []
     }
 }

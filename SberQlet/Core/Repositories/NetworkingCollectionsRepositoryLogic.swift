@@ -18,7 +18,7 @@ protocol NetworkingCollectionsRepositoryLogic: AnyObject {
     // Возвращает коллекцию под нужным индексом если индекс корректен
     func getCollection(withIndex index: Int) -> WordsCollection?
     
-    // Подтягивает данные о коллекциях из сети
+    // Подтягивает данные о коллекциях из сети или кэша
     func fetchCollections(
         from url: String,
         completion : @escaping @Sendable (Result<Void, Error>) -> Void
