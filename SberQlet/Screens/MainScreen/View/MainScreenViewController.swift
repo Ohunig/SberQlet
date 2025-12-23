@@ -67,22 +67,17 @@ final class MainScreenViewController: UIViewController {
     
     private lazy var popularCollectionsLabel = componentsFactory.makeTitle(
         text: Constants.popularCollectionsText,
-        textColor: palette?.textColor,
+        textColor: palette?.textUIColor,
         fontSize: Constants.titlesFontSize
     )
     
     private lazy var localCollectionsLabel = componentsFactory.makeTitle(
         text: Constants.localCollectionsText,
-        textColor: palette?.textColor,
+        textColor: palette?.textUIColor,
         fontSize: Constants.titlesFontSize
     )
     
-    private var palette: (
-        backgroundColor: UIColor,
-        textColor: UIColor,
-        elementsColor: UIColor,
-        labelElementsColor: UIColor
-    )?
+    private var palette: Palette?
     
     // MARK: Lifecycle
     
@@ -287,7 +282,12 @@ final class MainScreenViewController: UIViewController {
     private func stackCardTapped(_ recognizer: UITapGestureRecognizer) {
         guard let view = recognizer.view else { return }
         let index = view.tag
-        print(index)
+        interactor.goToCardsScreen(
+            Model.GoToCardsScreen.Request(
+                index: index,
+                fromLocal: true
+            )
+        )
     }
     
     @objc
@@ -301,13 +301,13 @@ final class MainScreenViewController: UIViewController {
 extension MainScreenViewController: MainScreenDisplayLogic {
     
     func displayStart(_ viewModel: Model.Start.ViewModel) {
-        palette = (
-            UIColor(viewModel.palette.backgroundColor),
-            UIColor(viewModel.palette.textColor),
-            UIColor(viewModel.palette.elementsColor),
-            UIColor(viewModel.palette.labelElementsColor)
+        palette = Palette(
+            backgroundColor: viewModel.palette.backgroundColor,
+            textColor: viewModel.palette.textColor,
+            elementsColor: viewModel.palette.elementsColor,
+            labelElementsColor: viewModel.palette.labelElementsColor
         )
-        view.backgroundColor = palette?.backgroundColor
+        view.backgroundColor = palette?.backgroundUIColor
     }
     
     func displayFetchedData() {
@@ -357,6 +357,11 @@ extension MainScreenViewController: UICollectionViewDelegate {
         _ collectionView: UICollectionView,
         didSelectItemAt indexPath: IndexPath
     ) {
-        print(indexPath.row)
+        interactor.goToCardsScreen(
+            Model.GoToCardsScreen.Request(
+                index: indexPath.row,
+                fromLocal: false
+            )
+        )
     }
 }

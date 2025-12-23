@@ -24,6 +24,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         navBar.isTranslucent = true
         navBar.backgroundColor = .clear
         
+        // Тестирование отсутствия кэша
 //        let cache = CollectionsCacheService(converter: CollectionsConverter())
 //        cache.saveCollections([], .local)
 //        cache.saveCollections([], .network)

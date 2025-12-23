@@ -16,4 +16,9 @@ protocol MainScreenBusinessLogic: AnyObject {
     
     // Загрузка данных из сети и локальных данных
     func fetchData()
+    
+    // Переход на экран с картами
+    // Если fromLocal == true => коллекция из локальных
+    // Если нет, то из полученных из сети
+    func goToCardsScreen(_ request: Model.GoToCardsScreen.Request)
 }

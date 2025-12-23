@@ -66,6 +66,27 @@ final class MainScreenInteractor: MainScreenBusinessLogic {
             }
         }
     }
+    
+    func goToCardsScreen(_ request: Model.GoToCardsScreen.Request) {
+        var collection: WordsCollection?
+        if request.fromLocal {
+            collection = localRepository.getCollection(
+                withIndex: request.index
+            )
+        } else {
+            collection = networkRepository.getCollection(
+                withIndex: request.index
+            )
+        }
+        guard let collection else {
+            // TODO: Extension cannot push screen
+            return
+        }
+        router?.showCardsScreen(
+            collection: collection,
+            settings: settingsRepository
+        )
+    }
 }
 
 // MARK: - Local collections access

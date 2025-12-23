@@ -16,4 +16,10 @@ protocol MainRoutingLogic: AnyObject {
     
     // Удаляет последний открытый экран со стека
     func popScreen()
+    
+    // Показывает экран с карточками слов
+    func showCardsScreen(
+        collection: WordsCollection,
+        settings: SettingsRepositoryLogic?
+    )
 }

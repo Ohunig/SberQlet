@@ -79,39 +79,29 @@ final class StandardComponentsFactory {
     
     // Коллекция слов
     func makeCollectionCard(
-        palette: (
-            backgroundColor: UIColor,
-            textColor: UIColor,
-            elementsColor: UIColor,
-            labelElementsColor: UIColor
-        )?
+        palette: Palette?
     ) -> CollectionCardView {
         let card = CollectionCardView()
-        card.textColor = palette?.textColor
-        card.backgroundColor = palette?.elementsColor
-        card.wordsCountBackgroundColor = palette?.labelElementsColor
+        card.textColor = palette?.textUIColor
+        card.backgroundColor = palette?.elementsUIColor
+        card.wordsCountBackgroundColor = palette?.labelElementsUIColor
         card.translatesAutoresizingMaskIntoConstraints = false
         return card
     }
     
     // Кнопка добавления чего-либо
     func makePlusButton(
-        palette: (
-            backgroundColor: UIColor,
-            textColor: UIColor,
-            elementsColor: UIColor,
-            labelElementsColor: UIColor
-        )?
+        palette: Palette?
     ) -> UIButton {
         let button = UIButton(type: .system)
-        button.backgroundColor = palette?.elementsColor
+        button.backgroundColor = palette?.elementsUIColor
         button.layer.cornerRadius = Constants.buttonCornerRadius
         button.setTitle(Constants.plus, for: .normal)
         button.titleLabel?.font = .systemFont(
             ofSize: Constants.buttonTextSize,
             weight: .bold
         )
-        button.tintColor = palette?.textColor
+        button.tintColor = palette?.textUIColor
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }

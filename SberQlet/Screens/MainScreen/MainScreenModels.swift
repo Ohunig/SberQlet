@@ -24,4 +24,12 @@ struct MainScreenModels {
             )
         }
     }
+    
+    // Модели для перехода на экран с карточками
+    enum GoToCardsScreen {
+        struct Request {
+            let index: Int
+            let fromLocal: Bool
+        }
+    }
 }
