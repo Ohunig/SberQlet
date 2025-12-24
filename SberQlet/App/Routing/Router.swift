@@ -12,6 +12,8 @@ final class Router: MainRoutingLogic {
     
     private weak var navigationController: UINavigationController?
     
+    weak var newWordResultDelegate: NewWordResultDelegate?
+    
     init(controller: UINavigationController) {
         navigationController = controller
     }
@@ -26,20 +28,22 @@ final class Router: MainRoutingLogic {
     
     func showCardsScreen(
         collection: WordsCollection,
-        settings: (any SettingsRepositoryLogic)?
+        settings: SettingsRepositoryLogic?,
+        statisticsManager: CardsStatisticsManagerLogic?
     ) {
         pushScreen(
             viewController: CardsScreenAssembly.build(
-                router: self,
                 collection: collection,
-                settings: settings
+                router: self,
+                settings: settings,
+                statisticsManager: statisticsManager
             )
         )
     }
     
     func showNewCollectionScreen(
         repository: LocalCollectionsRepositoryLogic,
-        settings: (any SettingsRepositoryLogic)?
+        settings: SettingsRepositoryLogic?
     ) {
         pushScreen(
             viewController: NewCollectionScreenAssembly.build(
@@ -48,5 +52,23 @@ final class Router: MainRoutingLogic {
                 settings: settings
             )
         )
+    }
+    
+    func showNewWordScreen(
+        settings: SettingsRepositoryLogic?
+    ) {
+        pushScreen(
+            viewController: NewWordScreenAssembly.build(
+                router: self,
+                settings: settings
+            )
+        )
+    }
+    
+    func showNewCollectionFromNewWordScreen(
+        response: RoutingDataModel.NewWordAndNewCollectionScreen.Response
+    ) {
+        popScreen()
+        newWordResultDelegate?.newWordResult(response)
     }
 }

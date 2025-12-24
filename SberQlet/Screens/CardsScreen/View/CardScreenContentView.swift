@@ -113,6 +113,9 @@ struct CardScreenContentView: View {
                         Spacer(minLength: Constants.cardsSpacerHeight)
                         finishedSummaryView
                             .zIndex(1)
+                            .onAppear {
+                                viewModel.addToStatistics()
+                            }
                     }
                 }
                 .frame(

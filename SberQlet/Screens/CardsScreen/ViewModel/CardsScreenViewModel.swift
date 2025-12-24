@@ -21,13 +21,16 @@ final class CardsScreenViewModel: ObservableObject {
     @Published var leftCount: Int = 0
     
     private weak var router: MainRoutingLogic?
+    private weak var statisticsManager: CardsStatisticsManagerLogic?
     
     init(
-        router: MainRoutingLogic?,
         collection: WordsCollection,
-        settings: SettingsRepositoryLogic?
+        router: MainRoutingLogic?,
+        settings: SettingsRepositoryLogic?,
+        statisticsManager: CardsStatisticsManagerLogic?
     ) {
         self.router = router
+        self.statisticsManager = statisticsManager
         if let settings {
             self.palette = Palette(
                 backgroundColor: settings.backgroundColor,
@@ -49,5 +52,12 @@ final class CardsScreenViewModel: ObservableObject {
             )
         }
         cards = copyCards
+    }
+    
+    func addToStatistics() {
+        statisticsManager?.addToStatistics(
+            successAmount: rightCount,
+            failAmount: leftCount
+        )
     }
 }

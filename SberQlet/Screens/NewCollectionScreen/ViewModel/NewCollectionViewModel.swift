@@ -10,15 +10,20 @@ import Combine
 
 final class NewCollectionViewModel: ObservableObject {
     
+    private enum Constants {
+        static let sameNameError = "Коллекция с таким названием уже существует"
+    }
+    
     @Published var name: String = ""
     
-    @Published var words: [String: String] = ["Aboba": "Абоба"]
+    @Published var words: [String: String] = [:]
     
     @Published var showError: Bool = false
     var errorText: String = ""
     
     private weak var router: MainRoutingLogic?
     private let repository: LocalCollectionsRepositoryLogic
+    private let settings: SettingsRepositoryLogic?
     let palette: Palette
     
     // MARK: Lifecycle
@@ -30,6 +35,7 @@ final class NewCollectionViewModel: ObservableObject {
     ) {
         self.router = router
         self.repository = repository
+        self.settings = settings
         if let settings {
             self.palette = Palette(
                 backgroundColor: settings.backgroundColor,
@@ -40,7 +46,10 @@ final class NewCollectionViewModel: ObservableObject {
         } else {
             self.palette = Palette()
         }
+        router?.newWordResultDelegate = self
     }
+    
+    // MARK: Use cases
     
     func addCollection() {
         do {
@@ -54,7 +63,22 @@ final class NewCollectionViewModel: ObservableObject {
             router?.popScreen()
         } catch {
             showError = true
-            errorText = "Коллекция с таким названием уже существует"
+            errorText = Constants.sameNameError
         }
+    }
+    
+    func addWord() {
+        router?.showNewWordScreen(settings: settings)
+    }
+}
+
+// MARK: - New word result delegate
+
+extension NewCollectionViewModel: NewWordResultDelegate {
+    
+    func newWordResult(
+        _ response: RoutingDataModel.NewWordAndNewCollectionScreen.Response
+    ) {
+        words[response.word] = response.translation
     }
 }

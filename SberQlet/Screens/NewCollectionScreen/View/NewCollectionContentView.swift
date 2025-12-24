@@ -46,7 +46,7 @@ struct NewCollectionContentView: View {
         ZStack {
             viewModel.palette.backgroundColor.ignoresSafeArea()
             
-            ScrollView {
+            ScrollView(showsIndicators: false) {
                 VStack(spacing: 0) {
                     // Заголовок
                     HStack {
@@ -63,13 +63,11 @@ struct NewCollectionContentView: View {
                     .padding(.bottom, Constants.titlesBottom)
                     
                     // Плашка ввода названия
-                    HStack {
-                        TextFieldView(
-                            text: $viewModel.name,
-                            placeholder: Constants.nameFieldPlaceholder,
-                            palette: viewModel.palette
-                        )
-                    }
+                    TextFieldView(
+                        text: $viewModel.name,
+                        placeholder: Constants.nameFieldPlaceholder,
+                        palette: viewModel.palette
+                    )
                     
                     // Заголовок списка слов
                     HStack {
@@ -94,7 +92,7 @@ struct NewCollectionContentView: View {
                         palette: viewModel.palette,
                         text: Constants.plusButtonText
                     ) {
-                        print("pressed")
+                        viewModel.addWord()
                     }
                     .padding(.top, Constants.wordsStackSpacing)
                     

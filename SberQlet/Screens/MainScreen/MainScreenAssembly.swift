@@ -12,7 +12,8 @@ enum MainScreenAssembly {
     // Сборка экрана
     static func build(
         router: MainRoutingLogic?,
-        settingsRepository: SettingsRepositoryLogic?
+        settingsRepository: SettingsRepositoryLogic?,
+        statisticsManager: CardsStatisticsManagerLogic?
     ) -> UIViewController {
         let presenter = MainScreenPresenter()
         // Создаём нужные репозитории в билдере главного экрана так как
@@ -26,11 +27,12 @@ enum MainScreenAssembly {
         )
         
         let interactor = MainScreenInteractor(
-            router: router,
             presenter: presenter,
-            settingsRepository: settingsRepository,
             localRepository: localRepository,
-            networkRepository: networkRepository
+            networkRepository: networkRepository,
+            router: router,
+            settingsRepository: settingsRepository,
+            statisticsManager: statisticsManager
         )
         
         // Так как интерактор реализует все три протокола

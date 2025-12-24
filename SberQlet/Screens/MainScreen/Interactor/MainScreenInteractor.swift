@@ -15,9 +15,11 @@ final class MainScreenInteractor: MainScreenBusinessLogic {
     
     private weak var router: MainRoutingLogic?
     
-    private let presenter: MainScreenPresentationLogic
-    
     private weak var settingsRepository: SettingsRepositoryLogic?
+    
+    private weak var statisticsManager: CardsStatisticsManagerLogic?
+    
+    private let presenter: MainScreenPresentationLogic
     
     private let networkRepository: NetworkingCollectionsRepositoryLogic
     
@@ -26,17 +28,19 @@ final class MainScreenInteractor: MainScreenBusinessLogic {
     // MARK: Lifecycle
     
     init(
-        router: MainRoutingLogic?,
         presenter: MainScreenPresentationLogic,
-        settingsRepository: SettingsRepositoryLogic?,
         localRepository: LocalCollectionsRepositoryLogic,
-        networkRepository: NetworkingCollectionsRepositoryLogic
+        networkRepository: NetworkingCollectionsRepositoryLogic,
+        router: MainRoutingLogic?,
+        settingsRepository: SettingsRepositoryLogic?,
+        statisticsManager: CardsStatisticsManagerLogic?
     ) {
         self.router = router
         self.presenter = presenter
         self.settingsRepository = settingsRepository
         self.localRepository = localRepository
         self.networkRepository = networkRepository
+        self.statisticsManager = statisticsManager
     }
     
     // MARK: Use-cases
@@ -93,7 +97,8 @@ final class MainScreenInteractor: MainScreenBusinessLogic {
         }
         router?.showCardsScreen(
             collection: collection,
-            settings: settingsRepository
+            settings: settingsRepository,
+            statisticsManager: statisticsManager
         )
     }
     

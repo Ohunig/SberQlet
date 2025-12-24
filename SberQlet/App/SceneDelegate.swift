@@ -33,10 +33,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let router = Router(controller: navigationController)
         let settings = SettingsRepository()
+        let statisticsManager = CardsStatisticsManager()
         router.pushScreen(
             viewController: MainTabBarAssembly.build(
                 router: router,
-                settingsRepository: settings
+                settingsRepository: settings,
+                statisticsManager: statisticsManager
             )
         )
         

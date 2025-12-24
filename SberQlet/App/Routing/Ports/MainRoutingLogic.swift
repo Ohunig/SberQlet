@@ -11,6 +11,9 @@ import UIKit
 // Основная логика роутинга
 protocol MainRoutingLogic: AnyObject {
     
+    // Делегат для передачи результата экрана нового слова
+    var newWordResultDelegate: NewWordResultDelegate? { get set }
+    
     // Кладёт новый контроллер на вершину стека
     func pushScreen(viewController: UIViewController)
     
@@ -20,12 +23,23 @@ protocol MainRoutingLogic: AnyObject {
     // Показывает экран с карточками слов
     func showCardsScreen(
         collection: WordsCollection,
-        settings: SettingsRepositoryLogic?
+        settings: SettingsRepositoryLogic?,
+        statisticsManager: CardsStatisticsManagerLogic?
     )
     
     // Показывает экран добавления коллекции
     func showNewCollectionScreen(
         repository: LocalCollectionsRepositoryLogic,
-        settings: (any SettingsRepositoryLogic)?
+        settings: SettingsRepositoryLogic?
+    )
+    
+    // Показывает экран добавления слова
+    func showNewWordScreen(
+        settings: SettingsRepositoryLogic?
+    )
+    
+    // Возвращается на экран новой коллекции из экрана нового слова
+    func showNewCollectionFromNewWordScreen(
+        response: RoutingDataModel.NewWordAndNewCollectionScreen.Response
     )
 }

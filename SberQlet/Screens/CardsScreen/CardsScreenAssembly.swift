@@ -11,14 +11,16 @@ import SwiftUI
 enum CardsScreenAssembly {
     
     static func build(
-        router: MainRoutingLogic?,
         collection: WordsCollection,
-        settings: SettingsRepositoryLogic?
+        router: MainRoutingLogic?,
+        settings: SettingsRepositoryLogic?,
+        statisticsManager: CardsStatisticsManagerLogic?
     ) -> UIViewController {
         let viewModel = CardsScreenViewModel(
-            router: router,
             collection: collection,
-            settings: settings
+            router: router,
+            settings: settings,
+            statisticsManager: statisticsManager
         )
         let view = CardScreenContentView(
             viewModel: viewModel

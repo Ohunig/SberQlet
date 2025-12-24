@@ -12,11 +12,13 @@ enum MainTabBarAssembly {
     
     static func build(
         router: MainRoutingLogic,
-        settingsRepository: SettingsRepositoryLogic
+        settingsRepository: SettingsRepositoryLogic,
+        statisticsManager: CardsStatisticsManagerLogic
     ) -> UIViewController {
         let viewModel = MainTabBarModel(
             router: router,
-            settingsRepository: settingsRepository
+            settingsRepository: settingsRepository,
+            statisticsManager: statisticsManager
         )
         let viewController = MainTabBar(viewModel: viewModel)
         
