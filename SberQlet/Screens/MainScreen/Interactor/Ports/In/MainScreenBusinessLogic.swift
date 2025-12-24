@@ -21,4 +21,7 @@ protocol MainScreenBusinessLogic: AnyObject {
     // Если fromLocal == true => коллекция из локальных
     // Если нет, то из полученных из сети
     func goToCardsScreen(_ request: Model.GoToCardsScreen.Request)
+    
+    // Переход на экран добавления новой коллекции
+    func goToNewCollectionScreen()
 }

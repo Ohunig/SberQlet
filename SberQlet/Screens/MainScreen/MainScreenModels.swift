@@ -25,6 +25,16 @@ struct MainScreenModels {
         }
     }
     
+    // Модели для передачи данных об ошибке
+    enum ErrorModels {
+        struct Response {
+            let error: Error
+        }
+        struct ViewModel {
+            let errorString: String
+        }
+    }
+    
     // Модели для перехода на экран с карточками
     enum GoToCardsScreen {
         struct Request {

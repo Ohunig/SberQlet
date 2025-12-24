@@ -20,7 +20,7 @@ enum CardsScreenAssembly {
             collection: collection,
             settings: settings
         )
-        let view = ContentView(
+        let view = CardScreenContentView(
             viewModel: viewModel
         )
         return UIHostingController(rootView: view)

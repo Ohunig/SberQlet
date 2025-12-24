@@ -31,6 +31,9 @@ final class MainScreenViewController: UIViewController {
         
         static let plusButtonHeight: CGFloat = 60
         static let plusButtonBottom: CGFloat = 20
+        
+        static let errorTitle: String = "Ошибка"
+        static let errorOkButton: String = "Ок"
     }
     
     // MARK: Properties
@@ -48,6 +51,8 @@ final class MainScreenViewController: UIViewController {
     private lazy var scrollView: UIScrollView = {
         let view = UIScrollView()
         view.showsVerticalScrollIndicator = false
+        view.delaysContentTouches = false
+        view.alwaysBounceVertical = true
         return view
     }()
     
@@ -104,9 +109,12 @@ final class MainScreenViewController: UIViewController {
         super.viewDidLoad()
         // Загружаем всё что нужно для правильного отображения экрана
         interactor.loadStart()
-        interactor.fetchData()
         // Настраиваем UI
         configureUI()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        interactor.fetchData()
     }
     
     // MARK: Configure UI
@@ -207,24 +215,6 @@ final class MainScreenViewController: UIViewController {
     }
     
     private func configureCollectionsStack() {
-        // Добавляем локальные коллекции на стек
-        for i in 0..<localCollectionsStorage.localCollectionsCount {
-            let card = componentsFactory.makeCollectionCard(palette: palette)
-            card.title = localCollectionsStorage.getLocalCollectionInfo(
-                index: i
-            )?.name
-            card.wordsCount = localCollectionsStorage.getLocalCollectionInfo(
-                index: i
-            )?.wordsCount
-            card.tag = i
-            // Добавляем реакцию на нажатия
-            let tap = UITapGestureRecognizer(
-                target: self,
-                action: #selector(stackCardTapped(_:))
-            )
-            card.addGestureRecognizer(tap)
-            cardsStack.addArrangedSubview(card)
-        }
         scrollView.addSubview(cardsStack)
         
         NSLayoutConstraint.activate(
@@ -276,6 +266,28 @@ final class MainScreenViewController: UIViewController {
         )
     }
     
+    // MARK: Reload Stack
+    
+    private func reloadStack() {
+        for i in cardsStack.subviews.count..<localCollectionsStorage.localCollectionsCount {
+            let card = componentsFactory.makeCollectionCard(palette: palette)
+            card.title = localCollectionsStorage.getLocalCollectionInfo(
+                index: i
+            )?.name
+            card.wordsCount = localCollectionsStorage.getLocalCollectionInfo(
+                index: i
+            )?.wordsCount
+            card.tag = i
+            // Добавляем реакцию на нажатия
+            let tap = UITapGestureRecognizer(
+                target: self,
+                action: #selector(stackCardTapped(_:))
+            )
+            card.addGestureRecognizer(tap)
+            cardsStack.addArrangedSubview(card)
+        }
+    }
+    
     // MARK: Tap processing
     
     @objc
@@ -292,7 +304,7 @@ final class MainScreenViewController: UIViewController {
     
     @objc
     private func plusButtonTapped() {
-        print("Plus button tapped")
+        interactor.goToNewCollectionScreen()
     }
 }
 
@@ -310,8 +322,27 @@ extension MainScreenViewController: MainScreenDisplayLogic {
         view.backgroundColor = palette?.backgroundUIColor
     }
     
+    func displayError(_ viewModel: Model.ErrorModels.ViewModel) {
+        let alert = UIAlertController(
+            title: Constants.errorTitle,
+            message: viewModel.errorString,
+            preferredStyle: .alert
+        )
+        
+        alert.addAction(
+            UIAlertAction(
+                title: Constants.errorOkButton,
+                style: .default,
+                handler: nil
+            )
+        )
+        
+        present(alert, animated: true, completion: nil)
+    }
+    
     func displayFetchedData() {
         collectionView.reloadData()
+        reloadStack()
     }
 }
 

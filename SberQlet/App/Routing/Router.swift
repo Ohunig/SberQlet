@@ -24,11 +24,27 @@ final class Router: MainRoutingLogic {
         navigationController?.popViewController(animated: true)
     }
     
-    func showCardsScreen(collection: WordsCollection, settings: (any SettingsRepositoryLogic)?) {
+    func showCardsScreen(
+        collection: WordsCollection,
+        settings: (any SettingsRepositoryLogic)?
+    ) {
         pushScreen(
             viewController: CardsScreenAssembly.build(
                 router: self,
                 collection: collection,
+                settings: settings
+            )
+        )
+    }
+    
+    func showNewCollectionScreen(
+        repository: LocalCollectionsRepositoryLogic,
+        settings: (any SettingsRepositoryLogic)?
+    ) {
+        pushScreen(
+            viewController: NewCollectionScreenAssembly.build(
+                repository: repository,
+                router: self,
                 settings: settings
             )
         )

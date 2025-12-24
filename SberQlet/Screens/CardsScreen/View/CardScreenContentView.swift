@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct ContentView: View {
+struct CardScreenContentView: View {
     
     private enum Constants {
         static let swipeToggleValue: CGFloat = 120
@@ -19,7 +19,7 @@ struct ContentView: View {
         static let secondCardScale: CGFloat = 0.95
         static let secondCardOffset: CGFloat = 12
         
-        static let dividerHeight: CGFloat = 0.4
+        static let dividerHeight: CGFloat = 0.5
         
         static let countTextSize: CGFloat = 32
         static let indicatorsSpacer: CGFloat = 8
@@ -30,7 +30,7 @@ struct ContentView: View {
         static let finishFontSize: CGFloat = 36
         static let finishTitle = "Результат"
 
-        static let horizontalPadding: CGFloat = 16
+        static let horizontalPadding: CGFloat = 20
         static let countersVerticalPadding: CGFloat = 10
         static let rotationDivisor: CGFloat = 20
         static let cardsSpacerHeight: CGFloat = 160
@@ -82,6 +82,7 @@ struct ContentView: View {
             )
             // Стек с контентом
             VStack(spacing: 0) {
+                
                 topBar
                 // Верхняя и следующая за ней карты
                 ZStack {
@@ -275,4 +276,3 @@ struct ContentView: View {
         .padding()
     }
 }
-

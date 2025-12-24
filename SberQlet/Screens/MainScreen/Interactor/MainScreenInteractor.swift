@@ -58,11 +58,21 @@ final class MainScreenInteractor: MainScreenBusinessLogic {
     }
     
     func fetchData() {
-        // TODO: Completion
         localRepository.fetchDataFromLocalStorage()
         networkRepository.fetchCollections(from: Constants.collectionsUrlString) { result in
-            DispatchQueue.main.async {
-                self.presenter.presentFetchedData()
+            switch result {
+            case .success:
+                DispatchQueue.main.async {
+                    self.presenter.presentFetchedData()
+                }
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    self.presenter.presentError(
+                        Model.ErrorModels.Response(
+                            error: error
+                        )
+                    )
+                }
             }
         }
     }
@@ -79,11 +89,17 @@ final class MainScreenInteractor: MainScreenBusinessLogic {
             )
         }
         guard let collection else {
-            // TODO: Extension cannot push screen
             return
         }
         router?.showCardsScreen(
             collection: collection,
+            settings: settingsRepository
+        )
+    }
+    
+    func goToNewCollectionScreen() {
+        router?.showNewCollectionScreen(
+            repository: localRepository,
             settings: settingsRepository
         )
     }

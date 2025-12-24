@@ -22,4 +22,10 @@ protocol MainRoutingLogic: AnyObject {
         collection: WordsCollection,
         settings: SettingsRepositoryLogic?
     )
+    
+    // Показывает экран добавления коллекции
+    func showNewCollectionScreen(
+        repository: LocalCollectionsRepositoryLogic,
+        settings: (any SettingsRepositoryLogic)?
+    )
 }
