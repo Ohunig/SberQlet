@@ -6,7 +6,18 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXContainerItemProxy section */
+		CE840A4F2EFC95D600032462 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CE8EAC9B2EF30C2800D7CBF3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CE8EACA22EF30C2800D7CBF3;
+			remoteInfo = SberQlet;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		CE840A4B2EFC95D600032462 /* SberQletTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SberQletTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE8EACA32EF30C2800D7CBF3 /* SberQlet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SberQlet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -21,6 +32,11 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		CE840A4C2EFC95D600032462 /* SberQletTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = SberQletTests;
+			sourceTree = "<group>";
+		};
 		CE8EACA52EF30C2800D7CBF3 /* SberQlet */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
@@ -32,6 +48,13 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		CE840A482EFC95D600032462 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CE8EACA02EF30C2800D7CBF3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -46,6 +69,7 @@
 			isa = PBXGroup;
 			children = (
 				CE8EACA52EF30C2800D7CBF3 /* SberQlet */,
+				CE840A4C2EFC95D600032462 /* SberQletTests */,
 				CE8EACA42EF30C2800D7CBF3 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -54,6 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				CE8EACA32EF30C2800D7CBF3 /* SberQlet.app */,
+				CE840A4B2EFC95D600032462 /* SberQletTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -61,6 +86,29 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		CE840A4A2EFC95D600032462 /* SberQletTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CE840A512EFC95D600032462 /* Build configuration list for PBXNativeTarget "SberQletTests" */;
+			buildPhases = (
+				CE840A472EFC95D600032462 /* Sources */,
+				CE840A482EFC95D600032462 /* Frameworks */,
+				CE840A492EFC95D600032462 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CE840A502EFC95D600032462 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				CE840A4C2EFC95D600032462 /* SberQletTests */,
+			);
+			name = SberQletTests;
+			packageProductDependencies = (
+			);
+			productName = SberQletTests;
+			productReference = CE840A4B2EFC95D600032462 /* SberQletTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		CE8EACA22EF30C2800D7CBF3 /* SberQlet */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = CE8EACB62EF30C2A00D7CBF3 /* Build configuration list for PBXNativeTarget "SberQlet" */;
@@ -93,6 +141,10 @@
 				LastSwiftUpdateCheck = 2610;
 				LastUpgradeCheck = 2610;
 				TargetAttributes = {
+					CE840A4A2EFC95D600032462 = {
+						CreatedOnToolsVersion = 26.1.1;
+						TestTargetID = CE8EACA22EF30C2800D7CBF3;
+					};
 					CE8EACA22EF30C2800D7CBF3 = {
 						CreatedOnToolsVersion = 26.1.1;
 					};
@@ -113,11 +165,19 @@
 			projectRoot = "";
 			targets = (
 				CE8EACA22EF30C2800D7CBF3 /* SberQlet */,
+				CE840A4A2EFC95D600032462 /* SberQletTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		CE840A492EFC95D600032462 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CE8EACA12EF30C2800D7CBF3 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -128,6 +188,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		CE840A472EFC95D600032462 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CE8EAC9F2EF30C2800D7CBF3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -137,7 +204,57 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		CE840A502EFC95D600032462 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CE8EACA22EF30C2800D7CBF3 /* SberQlet */;
+			targetProxy = CE840A4F2EFC95D600032462 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		CE840A522EFC95D600032462 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = DYMZ739AWX;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "-23.SberQletTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SberQlet.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SberQlet";
+			};
+			name = Debug;
+		};
+		CE840A532EFC95D600032462 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = DYMZ739AWX;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "-23.SberQletTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SberQlet.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SberQlet";
+			};
+			name = Release;
+		};
 		CE8EACB72EF30C2A00D7CBF3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -326,6 +443,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		CE840A512EFC95D600032462 /* Build configuration list for PBXNativeTarget "SberQletTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CE840A522EFC95D600032462 /* Debug */,
+				CE840A532EFC95D600032462 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		CE8EAC9E2EF30C2800D7CBF3 /* Build configuration list for PBXProject "SberQlet" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
