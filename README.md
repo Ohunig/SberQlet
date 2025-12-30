@@ -4,7 +4,7 @@
 Аналог Quizlet
 
 ## 📊 Презентация
-👉 [Открыть презентацию проекта](SberQletPresentation.pdf)
+👉 [Открыть презентацию проекта](docs/SberQletPresentation.pdf)
 
 ## 🧠 Функциональность
 - Создание карточек
